@@ -16,6 +16,13 @@ const login = async (req, res) => {
   res.status(200).json(data);
 };
 
+const create = async (req, res) => {
+  const { status, data } = await userService.create(req.body);
+  if (status === 'CONFLIT') res.status(409).json(data);
+  if (status === 'SUCCESS') res.status(201).json(data);
+};
+
 module.exports = {
   login,
+  create,
 };
