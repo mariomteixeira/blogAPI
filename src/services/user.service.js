@@ -37,9 +37,7 @@ const login = async (email, password) => {
 
 const create = async ({ displayName, email, password, image }) => {
   const user = await User.findOne({ where: { email } });
-  if (user) {
-    return { status: 'CONFLICT', data: { message: 'User already registered' } };
-  }
+  if (user) return { status: 'CONFLICT', data: { message: 'User already registered' } };
   await User.create({ displayName, email, password, image });
   const createUser = await User.findOne({ where: { email } });
   const token = generateToken(createUser);

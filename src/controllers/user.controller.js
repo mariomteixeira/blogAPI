@@ -18,7 +18,7 @@ const login = async (req, res) => {
 
 const create = async (req, res) => {
   const { status, data } = await userService.create(req.body);
-  if (status === 'CONFLIT') res.status(409).json(data);
+  if (status === 'CONFLICT') res.status(409).json(data);
   if (status === 'SUCCESS') res.status(201).json(data);
 };
 
